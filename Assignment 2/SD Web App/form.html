@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Registration</title>
+    <link rel="stylesheet" href="defaultTheme.css">
+</head>
+<body>
+    <nav>
+        <ul class="main-nav">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="registration.html">Client Registration</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="">Fuel Quote Form</a></li>
+            <li><a href="history.html">Fuel Quote History</a></li>
+            <li class="push"><a href="login.html">Log In</a></li>
+        </ul>
+    </nav>
+
+    <div id="quote">
+    
+        <h4>Fuel Quote Form</h4>
+        <FORM NAME="joe">
+            <INPUT TYPE="hidden" NAME="burns">
+            </FORM>
+            
+            <SCRIPT LANGUAGE="javascript">
+            
+            var locate = window.location
+            document.joe.burns.value = locate
+            
+            var text = document.joe.burns.value
+            
+            function delineate(str)
+            {
+            theleft = str.indexOf("=") + 1;
+            theright = str.lastIndexOf("")+1;
+            last = str.substring(theleft, theright)
+            //last.str.substring('+', ' ');
+            return(last);
+            }
+            
+            
+            </SCRIPT>
+        
+            
+            <FORM NAME="bull">
+                Gallons Required <input type="number" required><br>
+                Delivery Address <INPUT TYPE="text" NAME="bear" readonly><br>
+                </FORM>
+                
+                <SCRIPT LANGUAGE="javascript">
+                var zork = delineate(text)
+                document.bull.bear.value = zork
+                </SCRIPT>                
+            
+           Delivery Date   <input type="date" required><br>   
+            Suggested Price <input type="numbers"> price/gallon <br>
+            Total Amount Due <input type="number" readonly> 
+            <br>
+            <br>
+            <input type="submit" class="button"></a><br>
+        </form>
+    </div>
+    
+</body>
+</html>
