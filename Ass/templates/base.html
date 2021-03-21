@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Home{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+{% block nav %}
+    <nav>
+        <ul class="main-nav">
+            <li><a href="{% url 'app:home' %}">Home</a></li>
+            <li><a href="{% url 'app:register' %}">Client Registration</a></li>
+            <li><a href="{% url 'app:profile' %}">Profile</a></li>
+            <li><a href="{% url 'app:fuel_quote' %}">Fuel Quote Form</a></li>
+            <li><a href="{% url 'app:fuel_history' %}">Fuel Quote History</a></li>
+            <li class="push"><a href="{% url 'app:login' %}">Log In</a></li>
+        </ul>
+    </nav>
+{% endblock %}
+{% block content %}
+    <!-- Please your complete the profile management form, if you havent done so yet.
+    If the form is completed proceed to fuel Quote form
+click here to view your fuel quote history -->
+
+<div id="welcome">
+    <p class="bg1">Already a member? <a class="login" href="{% url 'app:login' %}">Login</a> </p>
+    <p class="p2">Please complete for your <a href="{% url 'app:profile' %}" class="p1">profile</a> if you haven't done so yet.</p>
+    <p class="p3">If your form is completed please proceed to <a href="{% url 'app:fuel_quote' %}" class="p1">fuel quote form</a>.</p>
+    <p class="p4">Click here to view  <a href="{% url 'app:fuel_history' %}" class="p1">fuel quote history</a>.</p>
+</div>
+
+<h5>Meet the Team, Feel free to reach out to either of us for more information</h5>
+<div id="our-team">
+    <!-- <p class="left"> Samita Damani <br>
+        damanisamita19@gmail.com</p>
+    <p class="middle">Anthony Naily <br>
+        Mhd.smith94@gmail.com</p>
+    <p class="right">Derrick Bulux <br>
+        dbulux12@gmail.com</p> -->
+
+        <p class="team"> Samita Damani <br>
+            damanisamita19@gmail.com <br>
+            Anthony Naily <br>
+            Mhd.smith94@gmail.com <br>
+            Derrick Bulux <br>
+            dbulux12@gmail.com</p>
+       
+
+
+</div>
+{% endblock %}
+</body>
+</html>

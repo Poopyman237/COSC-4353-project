@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+{% block content %}
+
+    <div id="container">
+        <h2>Log In</h2>
+        <label>
+            <form method="post">
+                {% csrf_token %}
+                Username <br>
+                <p>
+                    <input type="text" placeholder="Enter your username" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
+                </p>
+                Password
+                <p>
+                    <input type="password" placeholder="Password" name="password" autocomplete="current-password" required="" id="id_password">
+                </p>
+
+    <br><button type="submit" class="button">Submit</button>
+            </form>
+        </label>
+        <br>
+
+    <br>
+    <div class="newm">Not a Member?</div>
+    <div><a class="newr" href="{% url 'app:register' %}">Click Here to Register</a></div>
+    </div>
+
+{% endblock %}
+
