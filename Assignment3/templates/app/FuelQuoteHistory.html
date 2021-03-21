@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Fuel Quote Histroy{% endblock %}
+{% block content %}
+
+    <h1>Fuel Quote Histroy</h1>
+
+    <table border="2">
+        <thead>
+            <th>Gallons Requested</th>
+            <th>Delivery Address</th>
+            <th>Delivery Date</th>
+            <th>Price/Gallon</th>
+            <th>Total Amount</th>
+        </thead>
+        <tbody>
+        {% for q in quotes %}
+            <tr>
+                <td>{{ q.gallons_requested }}</td>
+                <td>{{ q.delivery_address }}</td>
+                <td>{{ q.delivery_date }}</td>
+                <td>{{ q.rate }}</td>
+                <td>{{ q.get_total }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}

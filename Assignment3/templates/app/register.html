@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Registration{% endblock %}
+{% block content %}
+
+    <div id="box">
+        <h3>Registration Form</h3>
+        <p>Kindly fill in following details to regiter with us:</p>
+        <label>
+            <form method="post" action=".">
+                {% csrf_token %}
+                Username:
+                <input type="text" name="username" class="username" placeholder="Enter your email address"><br>
+                Password:
+                <input type="password" name="password1" class="password" placeholder="Enter your password"><br>
+                Confirm your password:
+                <input type="password" name="password2" class="password" placeholder="Retype your password"><br>
+                <button class="button">Submit</button><br>
+            </form>
+        </label>
+        <br>
+        
+        <div class="redirect">You will be redirected to login page.</div>
+    </div>
+{% endblock %}
