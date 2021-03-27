@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Fuel Quote{% endblock %}
+{% block content %}
+
+    <div id="quote">
+    
+        <h4>Fuel Quote Form</h4>
+        <form method="post">
+            {% csrf_token %}
+            {% comment %}
+            Gallons Required <input name="gallons_requested" type="number" required><br>
+            Delivery Address <input name="delivery_address" type="address"><br>
+            Delivery Date   <input name="delivery_date" type="date" required><br>
+            Suggested Price <input name="rate" type="numbers"> price/gallon <br>
+            Total Amount Due <input type="number" readonly>
+            <br>
+            <br>{% endcomment %}
+            {{ form.as_p }}
+            <br><br>
+            <input type="submit" class="button">
+        </form>
+    </div>
+{% endblock %}
