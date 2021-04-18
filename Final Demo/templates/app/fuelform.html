@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Fuel Quote{% endblock %}
+{% block content %}
+
+    <div id="quote">
+
+        <h4>Fuel Quote Form</h4>
+        <form id="form" method="post">
+            {% csrf_token %}
+            {% comment %}
+            Gallons Required <input name="gallons_requested" type="number" required><br>
+            Delivery Address <input name="delivery_address" type="address"><br>
+            Delivery Date   <input name="delivery_date" type="date" required><br>
+            Suggested Price <input name="rate" type="numbers"> price/gallon <br>
+            Total Amount Due <input type="number" readonly>
+            <br>
+            <br>{% endcomment %}
+            {{ form.as_p }}
+
+            <h4>
+                Total: <span id="total"></span>
+            </h4>
+            <br><br>
+            <p><input value="Get quote" type="button" onclick="getPriceTotal()" class="button"><input type="submit"
+                                                                                                      class="button">
+            </p>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2
+        })
+        var url = "{% url 'app:price_module' %}";
+        var galRequestedD = document.getElementById('id_gallons_requested');
+        var rateD = document.getElementById('id_rate');
+        var totalD = document.getElementById('total');
+        var deliveryAddD = document.getElementById('id_delivery_address');
+        var deliveryDateD = document.getElementById('id_delivery_date')
+
+        /*
+        galRequestedD.addEventListener('change', function (e) {
+            if (galRequestedD.value != '' && rateD.value != ''){
+                getPriceTotal()
+            }
+
+        })*/
+
+        function getPriceTotal() {
+
+            if (!document.getElementById('form').reportValidity()){
+                return false
+            }
+
+            axios.post(url, {
+                'gallons_requested': galRequestedD.value,
+                'delivery_address': deliveryAddD.value,
+                'rate': 1.5,
+            })
+                .then(function (response) {
+                    console.log(response)
+                    const {total, suggested_price} = response.data;
+                    rateD.value = suggested_price;
+                    totalD.innerText = formatter.format(total)
+
+                })
+
+        }
+
+        function checkform() {
+            var f = document.getElementById('form').elements;
+            var cansubmit = true;
+
+            for (var i = 0; i < f.length; i++) {
+                if (f[i].value.length == 0) cansubmit = false;
+            }
+
+            if (cansubmit) {
+                document.getElementById('submitbutton').disabled = false;
+            }
+        }
+
+
+    </script>
+{% endblock %}
