@@ -60,16 +60,18 @@ def logout_view(request):
     return redirect('app:home')
 
 
+@login_required
 def profile(request):
     return render(request, 'app/profile.html')
 
 
+@login_required
 def profile_edit(request):
     form = ProfileForm(request.POST or None, instance=request.user.profile)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect('app:profile')
+            return redirect('app:edit_profile')
     context = {
         'form': form
     }
@@ -99,9 +101,10 @@ def fuel_quote(request):
     return render(request, 'app/fuelform.html', context)
 
 
+@login_required
 def fuel_history(request):
     context = {
-        'quotes': FuelQuote.objects.all(),
+        'quotes': FuelQuote.objects.filter(user=request.user),
     }
     return render(request, 'app/FuelQuoteHistory.html', context)
 

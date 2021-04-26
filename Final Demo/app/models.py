@@ -1,4 +1,6 @@
 from django.contrib.auth.models import User
+from django.core import validators
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
@@ -38,7 +40,7 @@ class Profile(models.Model):
     address_2 = models.CharField(max_length=100, default='', blank=True)
     city = models.CharField(max_length=100, default='', blank=False)
     state = models.ForeignKey(State, on_delete=models.CASCADE, null=True, blank=False)
-    zipcode = models.CharField(max_length=9, blank=False, default='')
+    zipcode = models.PositiveIntegerField(null=True, blank=True, validators=[MaxValueValidator(999999999), MinValueValidator(9999)])
 
     def __str__(self):
         return self.user.username

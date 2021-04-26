@@ -7,6 +7,13 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['full_Name', 'address_1', 'address_2', 'city', 'state', 'zipcode']
+        widgets = {
+            'zipcode': forms.NumberInput(attrs={'required': True, 'min': 9999, 'max': 999999999}),
+            'full_name': forms.TextInput(attrs={'maxlength': 50}),
+            'address_1': forms.TextInput(attrs={'maxlength': 100}),
+            'address_2': forms.TextInput(attrs={'maxlength': 100}),
+            'city': forms.TextInput(attrs={'maxlength': 100}),
+        }
 
 
 class FuelQuoteForm(forms.ModelForm):

@@ -10,6 +10,18 @@
         <label>
             <form method="post" action=".">
                 {% csrf_token %}
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <p><strong>{{field.name}}: {{error|escape}}</strong></p>
+                        {% endfor %}
+                    {% endfor%}
+                    
+                    {% for error in form.non_field_errors %}
+                        <p><strong>{{error|escape}}</strong></p>
+                    {% endfor %}
+                    
+                {% endif %}
                 Username:
                 <input type="text" name="username" class="username" placeholder="Enter your email address"><br>
                 Password:
