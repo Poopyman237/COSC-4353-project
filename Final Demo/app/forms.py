@@ -8,7 +8,11 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ['full_Name', 'address_1', 'address_2', 'city', 'state', 'zipcode']
         widgets = {
-            'zipcode': forms.NumberInput(attrs={'required': True, 'min': 9999, 'max': 999999999}),
+            'zipcode': forms.NumberInput(attrs={
+                'required': True, 'min': 9999, 'max': 999999999,
+                'maxlength': 9,
+                'oninput': 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);'
+                }),
             'full_name': forms.TextInput(attrs={'maxlength': 50}),
             'address_1': forms.TextInput(attrs={'maxlength': 100}),
             'address_2': forms.TextInput(attrs={'maxlength': 100}),
